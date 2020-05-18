@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: local
+server:
+  port: 8081
+
+---
+spring:
+  profiles: local
+
+  kafka:
+    enable.auto.commit: false
+    template:
+      default-topic: user-event
+    consumer:
+      group-id: embeddedkafka.des1
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: br.inf.jjd.embeddedkafka.mock.CustomKafkaAvroDeserializer
+    producer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      value-serializer: br.inf.jjd.embeddedkafka.mock.CustomKafkaAvroSerializer
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+
+  h2.console.enabled: true

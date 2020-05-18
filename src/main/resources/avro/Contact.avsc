@@ -1,0 +1,12 @@
+{
+  "type" : "record",
+  "name" : "Contact",
+  "namespace" : "br.inf.jjd.embeddedkafka.adapter.kafka.event.dto",
+  "fields" : [ {
+    "name" : "name",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "phoneNumber",
+    "type" : [ "null", "string" ]
+  } ]
+}
